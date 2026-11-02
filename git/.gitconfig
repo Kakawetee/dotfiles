@@ -1,3 +1,5 @@
 [user]
 	name = Kakawetee
 	email = aimarnogales24@gmail.com
+[credential]
+	helper = store
