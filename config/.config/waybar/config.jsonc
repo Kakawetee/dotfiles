@@ -19,7 +19,9 @@
     ],
     "modules-right": [
         "pulseaudio",
+	"bluetooth",
 	"network",
+	"custom/ethname",
 	"clock"
     ],
     "custom/launcher": {
@@ -47,17 +49,36 @@
 	"tooltip": false,
 	"on-click": "nvidia-settings"
     },
+    // Since I use Ethernet I dont really care about this
     "network": {
    	"format-wifi": "\uf1eb {essid} {signalStrength}%",
-   	"format-ethernet": "<span font_size='large' rise='-200'>󰈀 </span>{ifname}",
+   	"format-ethernet": "", //"<span font_size='large' rise='-200'>󰈀 </span>{ifname}",
   	"format-disconnected": "\uf071 Sin red",
   	"tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}",
 	"tooltip-format-ethernet": "{ifname}\n{ipaddr}"
     },
-    // Volumen: solo el icono segun el nivel y el porcentaje
+    "custom/ethname": {
+   	"exec": "nmcli -t -f TYPE,NAME connection show --active | awk -F: '$1==\"802-3-ethernet\"{print $2; exit}'",
+    	"interval": 5,
+    	"escape": true,
+    	"format": "<span font_size='large' rise='-200'>\udb80\ude00</span> {}",
+    	"tooltip": false
+    },
+    "bluetooth": {
+    	"format-off": "\udb80\udcb2 off",
+    	"format-on": "\udb80\udcaf on",
+    	"format-connected": "\udb80\udcb1 {device_alias}",
+    	"format-disabled": "\udb80\udcb2 n/a",
+    	"tooltip-format": "{controller_alias}\t{controller_address}",
+    	"tooltip-format-connected": "{controller_alias}\n{device_enumerate}",
+    	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    	"on-click": "bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)"
+    },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "\uf6a9 mute",
+        "format": "{icon} {volume}% {format_source}",
+        "format-muted": "\uf6a9 mute {format_source}",
+	"format-source": "\uf130 {volume}%",
+        "format-source-muted": "\uf131",
         "format-icons": {
             "default": ["\uf026", "\uf027", "\uf028"]
         },
