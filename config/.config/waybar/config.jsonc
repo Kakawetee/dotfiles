@@ -8,14 +8,16 @@
     // Choose the order of the modules
     "modules-left": [
 	"cpu",
-	"memory"
+	"memory",
+	"custom/gpu"
 
     ],
     "modules-center": [
     	"niri/window"
     ],
     "modules-right": [
-        "pulseaudio",
+        "network",
+	"pulseaudio",
         "clock"
     ],
     // Modules configuration
@@ -35,36 +37,41 @@
     //         "default": ""
     //     }
     // },
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+     "clock": {
+        "format": "<span rise='750'>󰥔 </span>{:%H:%M}",
+        "format-alt": "\uf073  {:%Y-%m-%d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "{usage}% \uf2db",
         "tooltip": false
     },
+
     "memory": {
-        "format": "{}% "
+        "format": "{}% <span font_size='x-large'>󰘚 </span>"
     },
+    "custom/gpu": {
+    	"exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
+	"interval": 2,
+	"format": "{}% <span font_size='x-large'>󰢮 </span>",
+	"tooltip": false,
+	"on-click": "nvidia-settings"
+    },
+    "network": {
+   	"format-wifi": "\uf1eb {essid} {signalStrength}%",
+   	"format-ethernet": "󰈀 {ifname}",
+  	"format-disconnected": "\uf071 Sin red",
+  	"tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}",
+	"tooltip-format-ethernet": "{ifname}\n{ipaddr}"
+    },
+    // Volumen: solo el icono segun el nivel y el porcentaje
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+        "format": "{icon} {volume}%",
+        "format-muted": "\uf6a9 mute",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+            "default": ["\uf026", "\uf027", "\uf028"]
         },
         "on-click": "pavucontrol"
-    },
+    }
     
 }
