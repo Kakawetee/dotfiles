@@ -10,19 +10,21 @@
 	"custom/launcher",
 	"cpu",
 	"memory",
-	"custom/gpu"
+	"custom/gpu",
+	"mpris"
+
 
     ],
     "modules-center": [ 
-    	// "niri/window",
-    	"mpris"
+    	"niri/window"
     ],
     "modules-right": [
         "pulseaudio",
-	"bluetooth",
 	"network",
 	"custom/ethname",
-	"clock"
+	"clock",
+	"custom/lock",
+	"custom/power"
     ],
     "custom/launcher": {
 	"format": " " ,
@@ -55,24 +57,15 @@
    	"format-ethernet": "", //"<span font_size='large' rise='-200'>󰈀 </span>{ifname}",
   	"format-disconnected": "\uf071 Sin red",
   	"tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}",
-	"tooltip-format-ethernet": "{ifname}\n{ipaddr}"
+	"tooltip-format-ethernet": "{ifname}\n{ipaddr}",
+    	"on-click": "nm-connection-editor"
     },
     "custom/ethname": {
    	"exec": "nmcli -t -f TYPE,NAME connection show --active | awk -F: '$1==\"802-3-ethernet\"{print $2; exit}'",
     	"interval": 5,
     	"escape": true,
     	"format": "<span font_size='large' rise='-200'>\udb80\ude00</span> {}",
-    	"tooltip": false
-    },
-    "bluetooth": {
-    	"format-off": "\udb80\udcb2 off",
-    	"format-on": "\udb80\udcaf on",
-    	"format-connected": "\udb80\udcb1 {device_alias}",
-    	"format-disabled": "\udb80\udcb2 n/a",
-    	"tooltip-format": "{controller_alias}\t{controller_address}",
-    	"tooltip-format-connected": "{controller_alias}\n{device_enumerate}",
-    	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    	"on-click": "bluetoothctl power $(bluetoothctl show | grep -q 'Powered: yes' && echo off || echo on)"
+    	"on-click": "nm-connection-editor"
     },
     "pulseaudio": {
         "format": "{icon} {volume}% {format_source}",
@@ -97,5 +90,31 @@
 	"on-click-right": "playerctl next",
 	"on-click-middle": "playerctl previous"
 
+    },
+    "group/power": {
+	"orientation": "inherit",
+	"drawer": {
+		"transition-duration": 300,
+		"children-class": "power-child",
+		"transition-left-to-right": true,
+		"click-to-reveal": true
+	},
+	"modules": [
+		"custom/menu",
+		"custom/power",
+		"custom/reboot",
+		"custom/suspend"
+	]
+    },
+    "custom/power": {
+	"format": "\uf011",
+	"tooltip": false,
+	"menu": "on-click",
+	"menu-file": "~/.config/waybar/power_menu.xml",
+	"menu-actions": {
+        	"shutdown": "systemctl poweroff",
+        	"reboot": "systemctl reboot",
+       		"suspend": "systemctl suspend"
+    	}
     }
 }

@@ -60,3 +60,18 @@ button:hover {
     background-color: #90b1b1;
     color: #2a5c45;
 }
+menu {
+    background: #000000;
+    border: 1px solid #89b4fa;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+menuitem {
+    padding: 6px 14px;
+    border-radius: 6px;
+}
+
+menuitem:hover {
+    background: #1e2a44;
+}
