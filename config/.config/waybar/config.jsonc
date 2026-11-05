@@ -2,10 +2,12 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
+    "height": 40, // Waybar height (to be removed for auto height)
     "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
+    "layer": "top",
+    "position": "top",
+   
+    
     "modules-left": [
 	"custom/launcher",
 	"cpu",
@@ -42,7 +44,7 @@
     },
 
     "memory": {
-        "format": "{}% <span rise='800'></span>"
+        "format": "{}% <span rise='800'> </span>"
     },
     "custom/gpu": {
     	"exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
@@ -64,7 +66,7 @@
    	"exec": "nmcli -t -f TYPE,NAME connection show --active | awk -F: '$1==\"802-3-ethernet\"{print $2; exit}'",
     	"interval": 5,
     	"escape": true,
-    	"format": "<span font_size='large' rise='-200'>\udb80\ude00</span> {}",
+    	"format": "<span font_size='large' rise='-200'>\udb80\ude00 </span> {}",
     	"on-click": "nm-connection-editor"
     },
     "pulseaudio": {

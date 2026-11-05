@@ -1,8 +1,7 @@
 * {
     font-family: "Agave Nerd Font", sans-serif; 
-    font-size: 13px;
+    font-size: 16px;
 }
-
 window#waybar {
     background-color: rgba(43, 48, 59, 0.5);
     border-bottom: 3px solid rgba(100, 114, 125, 0.5);
@@ -14,52 +13,41 @@ window#waybar {
 window#waybar.hidden {
     opacity: 0.2;
 }
-
 button {
+    /* Use box-shadow instead of border so the text isn't offset */
     box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
     border: none;
     border-radius: 0;
 }
 
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: inherit;
     box-shadow: inset 0 -3px #ffffff;
 }
 
-#clock,
-#cpu,
+
+#custom-launcher,
+#cpu, 
 #memory,
-#pulseaudio {
-    padding: 0 10px;
-    color: #ffffff;
+#custom-gpu,
+#mpris,
+#window,
+#pulseaudio,
+#network,
+#custom-ethname,
+#clock,
+#custom-power,
+#custom-lock{
+    padding: 0 20px;
+    border-radius: 12px;
+    background: #000000;
+    margin: 8px 5px;
+    font-weight: bold;
+    letter-spacing: 0.75px;
 }
 
-#window {
-    margin: 0 4px;
-}
-
-#clock {
-    background-color: #64727D;
-}
-
-#cpu {
-    background-color: #2ecc71;
-    color: #000000;
-}
-
-#memory {
-    background-color: #9b59b6;
-}
-
-#pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
-}
-
-#pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
-}
 menu {
     background: #000000;
     border: 1px solid #89b4fa;
