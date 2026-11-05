@@ -23,8 +23,8 @@
 	"network",
 	"custom/ethname",
 	"clock",
-	"custom/lock",
-	"custom/power"
+	"custom/power",
+	"custom/lock"
     ],
     "custom/launcher": {
 	"format": " " ,
@@ -116,5 +116,10 @@
         	"reboot": "systemctl reboot",
        		"suspend": "systemctl suspend"
     	}
+    },
+    "custom/lock": {
+	"format": "\uf023",
+	"tooltip": false,
+	"on-click": "swaylock"
     }
 }
