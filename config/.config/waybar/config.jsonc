@@ -10,14 +10,16 @@
     
     "modules-left": [
 	"custom/launcher",
+	"custom/sep",
 	"cpu",
 	"memory",
 	"custom/gpu",
-	"mpris"
 
 
     ],
     "modules-center": [ 
+	"mpris",
+	"custom/sep#2",
     	"niri/window"
     ],
     "modules-right": [
@@ -25,11 +27,13 @@
 	"network",
 	"custom/ethname",
 	"clock",
+	"custom/sep#1",
 	"custom/power",
 	"custom/lock"
     ],
     "custom/launcher": {
-	"format": " " ,
+	"format": "<span font_size='x-large'></span> " ,
+
 	"tooltip": false,
 	"on-click": "fuzzel"
     },
@@ -39,7 +43,7 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "cpu": {
-        "format": "{usage}% \uf2db",
+        "format": "{usage}% <span rise='600'>\uf2db</span>",
         "tooltip": false
     },
 
@@ -49,7 +53,7 @@
     "custom/gpu": {
     	"exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits",
 	"interval": 2,
-	"format": "{}% <span font_size='x-large'>󰢮 </span>",
+	"format": "{}% <span rise='-600' font_size='x-large'>󰢮 </span>",
 	"tooltip": false,
 	"on-click": "nvidia-settings"
     },
@@ -66,11 +70,11 @@
    	"exec": "nmcli -t -f TYPE,NAME connection show --active | awk -F: '$1==\"802-3-ethernet\"{print $2; exit}'",
     	"interval": 5,
     	"escape": true,
-    	"format": "<span font_size='large' rise='-200'>\udb80\ude00 </span> {}",
+    	"format": "<span font_size='medium' rise='150'>\udb80\ude00 </span> {}",
     	"on-click": "nm-connection-editor"
     },
     "pulseaudio": {
-        "format": "{icon} {volume}% {format_source}",
+        "format": "{icon}  {volume}% {format_source}",
         "format-muted": "\uf6a9 mute {format_source}",
 	"format-source": "\uf130 {volume}%",
         "format-source-muted": "\uf131",
@@ -80,7 +84,7 @@
         "on-click": "pavucontrol"
     },
     "mpris": {
-	"format": "{status_icon}{dynamic}",
+	"format": "{status_icon} {dynamic}",
 	"status-icons": {
 		"playing": " ",
 		"paused": " "
@@ -123,5 +127,18 @@
 	"format": "\uf023",
 	"tooltip": false,
 	"on-click": "swaylock"
-    }
+    },
+    "custom/sep": {
+	"format": "<span font_size='x-large'>•</span>",
+	"tooltip": false
+    },
+    "custom/sep#1": {
+	"format": "<span font_size='x-large'>•</span>",
+	"tooltip": false
+    },
+     "custom/sep#2": {
+	"exec": "~/.config/waybar/mpris-sep.sh",
+     	"format": "{}",
+     	"tooltip": false
+     }
 }

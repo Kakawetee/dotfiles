@@ -1,11 +1,11 @@
 * {
     font-family: "Agave Nerd Font", sans-serif; 
     font-size: 16px;
+    border: none;
+    border-radius: 0;
 }
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
+    background-color: rgba(22, 25, 36, 0.9);
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -40,12 +40,37 @@ button:hover {
 #clock,
 #custom-power,
 #custom-lock{
-    padding: 0 20px;
+    padding: 2px 20px;
     border-radius: 12px;
-    background: #000000;
-    margin: 8px 5px;
+    background-color: rgba(52, 59, 82, 0.9);
+    margin: 8px 3px;
     font-weight: bold;
     letter-spacing: 0.75px;
+}
+
+#custom-power,
+#custom-lock{
+    padding: 0px 15px 0px 10px;
+    margin: 8px 0px 8px 3px;
+}
+
+#custom-ethname,
+#clock{
+    padding: 4px 20px 2px 20px;
+}
+
+#memory{
+    padding: 4px 15px 2px 15px;
+}
+#cpu{
+    padding: 5px 21px 3px 15px;
+}
+#custom-gpu{
+    padding: 4px 11px 3px 15px;
+}
+
+#pulseaudio{
+    padding: 4px 20px 2px 20px;
 }
 
 menu {
@@ -61,5 +86,5 @@ menuitem {
 }
 
 menuitem:hover {
-    background: #1e2a44;
+    background: #1e2a44
 }
