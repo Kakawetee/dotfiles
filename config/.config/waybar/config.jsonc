@@ -137,7 +137,7 @@
 	"tooltip": false
     },
      "custom/sep#2": {
-	"exec": "~/.config/waybar/mpris-sep.sh",
+	"exec": "~/.config/waybar/scripts/mpris-sep.sh",
      	"format": "{}",
      	"tooltip": false
      }
