@@ -13,9 +13,7 @@
 	"custom/sep",
 	"cpu",
 	"memory",
-	"custom/gpu",
-
-
+	"custom/gpu"
     ],
     "modules-center": [ 
 	"mpris",
@@ -60,7 +58,7 @@
     // Since I use Ethernet I dont really care about this
     "network": {
    	"format-wifi": "\uf1eb {essid} {signalStrength}%",
-   	"format-ethernet": "", //"<span font_size='large' rise='-200'>󰈀 </span>{ifname}",
+   	"format-ethernet": "",
   	"format-disconnected": "\uf071 Sin red",
   	"tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}",
 	"tooltip-format-ethernet": "{ifname}\n{ipaddr}",
